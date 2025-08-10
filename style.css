@@ -2,23 +2,21 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 /* Font families */
 .poppins-light {
-  font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-style: normal;
 }
 
 .poppins-medium {
-  font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-style: normal;
 }
 
 .poppins-bold {
-  font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-style: normal;
 }
@@ -47,6 +45,7 @@ h2 {
 fieldset {
   padding: 20px;
   border-color: #b8b8ff;
+  margin: 15px 0;
 }
 
 legend {
@@ -95,6 +94,11 @@ form {
   flex-direction: column;
 }
 
+.show-again-button {
+  position: fixed;
+  bottom: 5%;
+  right: 25%;
+}
 .reset-button {
   position: fixed;
   bottom: 5%;

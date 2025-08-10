@@ -35,11 +35,14 @@ const input = document.getElementById("name");
 const visAffirmasjonBtn = document.getElementById("get-affirmation");
 const errorParagraph = document.getElementById("error-message");
 const mainContainer = document.getElementById("main-container");
+const h1 = document.querySelector("h1");
+const h2 = document.querySelector("h2");
 
 //Create a paragraph for output
 const output = document.createElement("p");
 const affirmasjonParagraph = document.createElement("p");
 const resetButton = document.createElement("button");
+const showAgainButton = document.createElement("button");
 
 //Function that get a random affirmation for chosed category
 const getAffirmation = () => {
@@ -48,7 +51,7 @@ const getAffirmation = () => {
 
   //Getting a name from the user
   let name = document.getElementById("name");
-  console.log(name);
+
   if (name.value.trim() === "") {
     errorParagraph.textContent = "Upps, du har glemt å skrive navnet ditt :)";
     label.focus();
@@ -83,9 +86,16 @@ const getAffirmation = () => {
       label.style.display = "none";
       input.style.display = "none";
       fieldset.style.display = "none";
+      visAffirmasjonBtn.style.display = "none";
       outputContainer.append(output, affirmasjonParagraph);
-      visAffirmasjonBtn.textContent = "velg en til";
-      // fieldset.style.display = "inline-block";
+      h1.style.display = "none";
+      h2.style.display = "none";
+      showAgainButton.style.display = "inline-block";
+      showAgainButton.textContent = "Velg en til";
+      showAgainButton.classList.add("show-again-button");
+      showAgainButton.addEventListener("click", showAgain);
+      mainContainer.append(showAgainButton);
+
       resetButton.style.display = "inline-block";
       resetButton.textContent = "Reset";
       resetButton.addEventListener("click", reset);
@@ -99,8 +109,19 @@ const reset = () => {
   label.style.display = "inline-block";
   input.style.display = "inline-block";
   input.value = "";
+  fieldset.style.display = "inline-block";
+  visAffirmasjonBtn.style.display = "inline-block";
+  showAgainButton.style.display = "none";
   visAffirmasjonBtn.textContent = "Vis affirmasjon";
   output.remove();
   affirmasjonParagraph.remove();
   resetButton.style.display = "none";
+};
+
+const showAgain = () => {
+  showAgainButton.style.display = "none";
+  fieldset.style.display = "inline-block";
+  visAffirmasjonBtn.style.display = "inline-block";
+  output.remove();
+  affirmasjonParagraph.remove();
 };
