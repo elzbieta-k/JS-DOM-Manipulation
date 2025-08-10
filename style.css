@@ -28,7 +28,7 @@ body {
   width: 100vw;
   background-color: #ffeedd;
 }
-main {
+#main-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -65,9 +65,27 @@ button {
 }
 
 .output-paragraph {
-  color: #9381ff;
+  color: #b8b8ff;
+  text-align: center;
 }
 
+.affirmasjon-text {
+  font-size: 2rem;
+  text-align: center;
+  color: #9381ff;
+  animation: scaleText 1s linear;
+}
+
+@keyframes scaleText {
+  0% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 label {
   text-align: center;
 }
@@ -75,4 +93,10 @@ form {
   padding: 20px;
   display: flex;
   flex-direction: column;
+}
+
+.reset-button {
+  position: fixed;
+  bottom: 5%;
+  right: 15%;
 }

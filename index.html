@@ -14,7 +14,7 @@
     />
   </head>
   <body>
-    <main>
+    <main id="main-container">
       <h1 class="poppins-medium">Affirmation Generator</h1>
       <h2 class="poppins-light">
         Hva trenger du å høre i dag? Trykk på en kategori og la ordene løfte
@@ -25,6 +25,7 @@
           >Skriv navnet ditt:</label
         >
         <input type="text" id="name" name="name" required />
+        <p id="error-message"></p>
         <fieldset class="poppins-light">
           <legend>Select a category:</legend>
           <div>

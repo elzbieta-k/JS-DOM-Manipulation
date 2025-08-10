@@ -26,12 +26,15 @@ const affirmations = {
   ],
 };
 
-//Getting container for output
+//Getting elements from HTML
 const outputContainer = document.getElementById("outputContainer");
 const form = document.getElementById("form");
+const fieldset = document.querySelector("fieldset");
 const label = document.querySelector(".label-name");
 const input = document.getElementById("name");
 const visAffirmasjonBtn = document.getElementById("get-affirmation");
+const errorParagraph = document.getElementById("error-message");
+const mainContainer = document.getElementById("main-container");
 
 //Create a paragraph for output
 const output = document.createElement("p");
@@ -45,36 +48,50 @@ const getAffirmation = () => {
 
   //Getting a name from the user
   let name = document.getElementById("name");
-  // name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+  console.log(name);
+  if (name.value.trim() === "") {
+    errorParagraph.textContent = "Upps, du har glemt å skrive navnet ditt :)";
+    label.focus();
+    return false;
+  } else {
+    errorParagraph.textContent = "";
+    let valueName = name.value;
+    valueName =
+      valueName.charAt(0).toUpperCase() + valueName.slice(1).toLowerCase();
+    //Getting all the categories from the form
+    const radios = document.querySelectorAll('input[name="category"]');
 
-  //Getting all the categories from the form
-  const radios = document.querySelectorAll('input[name="category"]');
-
-  // Getting a name of chosen category
-  let category = "";
-  for (let radio of radios) {
-    if (radio.checked) {
-      category = radio.value;
+    // Getting a name of chosen category
+    let category = "";
+    for (let radio of radios) {
+      if (radio.checked) {
+        category = radio.value;
+      }
     }
-  }
 
-  //Getting a random affirmation from a chosed category and appending to the outputContainer
-  if (category) {
-    const affirmationOfCategory = affirmations[category];
-    const randomAffirmation =
-      affirmationOfCategory[
-        Math.floor(Math.random() * affirmationOfCategory.length)
-      ];
-    output.classList.add("poppins-bold", "output-paragraph");
-    output.textContent = `${name.value}, her er dine ord i dag:`;
-    affirmasjonParagraph.textContent = `${randomAffirmation}`;
-    label.style.display = "none";
-    input.style.display = "none";
-    outputContainer.append(output, affirmasjonParagraph);
-    visAffirmasjonBtn.textContent = "velg en til";
-    resetButton.textContent = "Reset";
-    resetButton.addEventListener("click", reset);
-    document.body.append(resetButton);
+    //Getting a random affirmation from a chosed category and appending to the outputContainer
+    if (category) {
+      const affirmationOfCategory = affirmations[category];
+      const randomAffirmation =
+        affirmationOfCategory[
+          Math.floor(Math.random() * affirmationOfCategory.length)
+        ];
+      output.classList.add("poppins-bold", "output-paragraph");
+      output.textContent = `${valueName}, her er dine ord i dag:`;
+      affirmasjonParagraph.classList.add("affirmasjon-text");
+      affirmasjonParagraph.textContent = `${randomAffirmation}`;
+      label.style.display = "none";
+      input.style.display = "none";
+      fieldset.style.display = "none";
+      outputContainer.append(output, affirmasjonParagraph);
+      visAffirmasjonBtn.textContent = "velg en til";
+      // fieldset.style.display = "inline-block";
+      resetButton.style.display = "inline-block";
+      resetButton.textContent = "Reset";
+      resetButton.addEventListener("click", reset);
+      resetButton.classList.add("reset-button");
+      mainContainer.append(resetButton);
+    }
   }
 };
 
