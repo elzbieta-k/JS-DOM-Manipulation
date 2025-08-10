@@ -38,7 +38,12 @@ body {
   background-color: #f8f7ff;
 }
 
-h2 {
+.heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
   text-align: center;
 }
 
@@ -73,6 +78,9 @@ button {
   text-align: center;
   color: #9381ff;
   animation: scaleText 1s linear;
+  text-shadow: 1px 1px 3px black, /* Bottom-right shadow */ -1px 1px 0 black,
+    /* Bottom-left shadow */ 1px -1px 3px black,
+    /* Top-right shadow */ -1px -1px 3px black; /* Top-left shadow */
 }
 
 @keyframes scaleText {
@@ -96,11 +104,29 @@ form {
 
 .show-again-button {
   position: fixed;
-  bottom: 5%;
-  right: 25%;
+  bottom: 25px;
+  right: 260px;
 }
 .reset-button {
   position: fixed;
-  bottom: 5%;
-  right: 15%;
+  bottom: 25px;
+  right: 170px;
+}
+#outputContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 600px) {
+  .show-again-button {
+    bottom: 25px;
+    right: 50%;
+  }
+
+  .reset-button {
+    bottom: 25px;
+    right: 33%;
+  }
 }

@@ -35,14 +35,21 @@ const input = document.getElementById("name");
 const visAffirmasjonBtn = document.getElementById("get-affirmation");
 const errorParagraph = document.getElementById("error-message");
 const mainContainer = document.getElementById("main-container");
-const h1 = document.querySelector("h1");
-const h2 = document.querySelector("h2");
+const heading = document.querySelector(".heading");
 
 //Create a paragraph for output
 const output = document.createElement("p");
 const affirmasjonParagraph = document.createElement("p");
-const resetButton = document.createElement("button");
-const showAgainButton = document.createElement("button");
+
+//Function that creates button
+const createButton = (text, className, onClick) => {
+  const btn = document.createElement("button");
+  btn.style.display = "inline-block";
+  btn.textContent = text;
+  btn.classList.add(className);
+  btn.addEventListener("click", onClick);
+  return btn;
+};
 
 //Function that get a random affirmation for chosed category
 const getAffirmation = () => {
@@ -53,7 +60,7 @@ const getAffirmation = () => {
   let name = document.getElementById("name");
 
   if (name.value.trim() === "") {
-    errorParagraph.textContent = "Upps, du har glemt å skrive navnet ditt :)";
+    errorParagraph.textContent = "Obs, du har glemt å skrive navnet ditt :)";
     label.focus();
     return false;
   } else {
@@ -88,40 +95,42 @@ const getAffirmation = () => {
       fieldset.style.display = "none";
       visAffirmasjonBtn.style.display = "none";
       outputContainer.append(output, affirmasjonParagraph);
-      h1.style.display = "none";
-      h2.style.display = "none";
-      showAgainButton.style.display = "inline-block";
-      showAgainButton.textContent = "Velg en til";
-      showAgainButton.classList.add("show-again-button");
-      showAgainButton.addEventListener("click", showAgain);
-      mainContainer.append(showAgainButton);
-
-      resetButton.style.display = "inline-block";
-      resetButton.textContent = "Reset";
-      resetButton.addEventListener("click", reset);
-      resetButton.classList.add("reset-button");
-      mainContainer.append(resetButton);
+      heading.style.display = "none";
+      mainContainer.append(showAgainButton, resetButton);
     }
   }
 };
 
+//Function for button which show again a categories for choosing new afirmation
+const showAgain = () => {
+  showAgainButton.remove();
+  heading.style.display = "flex";
+  fieldset.style.display = "inline-block";
+  visAffirmasjonBtn.style.display = "inline-block";
+  showAgainButton.style.display = "inline-block";
+  output.remove();
+  affirmasjonParagraph.remove();
+};
+
+//Function reset - takes back to the input for entering name
 const reset = () => {
+  heading.style.display = "flex";
   label.style.display = "inline-block";
   input.style.display = "inline-block";
   input.value = "";
   fieldset.style.display = "inline-block";
   visAffirmasjonBtn.style.display = "inline-block";
-  showAgainButton.style.display = "none";
+  showAgainButton.remove();
   visAffirmasjonBtn.textContent = "Vis affirmasjon";
   output.remove();
   affirmasjonParagraph.remove();
-  resetButton.style.display = "none";
+  resetButton.remove();
 };
 
-const showAgain = () => {
-  showAgainButton.style.display = "none";
-  fieldset.style.display = "inline-block";
-  visAffirmasjonBtn.style.display = "inline-block";
-  output.remove();
-  affirmasjonParagraph.remove();
-};
+//Creating buttons with function
+const showAgainButton = createButton(
+  "Velg en til",
+  "show-again-button",
+  showAgain
+);
+const resetButton = createButton("Reset", "reset-button", reset);
