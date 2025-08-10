@@ -52,16 +52,27 @@ fieldset {
 legend {
   text-align: center;
 }
+
 input[type="radio"] {
   accent-color: #b8b8ff;
 }
 
 button {
   padding: 10px 20px;
+  margin: 0 auto;
   border-color: #b8b8ff;
   background: linear-gradient(0.25turn, #b8b8ff, #f8f7ff, #ffeedd);
 }
 
-.outputParagraph {
+.output-paragraph {
   color: #9381ff;
+}
+
+label {
+  text-align: center;
+}
+form {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }

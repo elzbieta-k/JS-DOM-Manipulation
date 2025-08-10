@@ -28,9 +28,15 @@ const affirmations = {
 
 //Getting container for output
 const outputContainer = document.getElementById("outputContainer");
+const form = document.getElementById("form");
+const label = document.querySelector(".label-name");
+const input = document.getElementById("name");
+const visAffirmasjonBtn = document.getElementById("get-affirmation");
 
 //Create a paragraph for output
 const output = document.createElement("p");
+const affirmasjonParagraph = document.createElement("p");
+const resetButton = document.createElement("button");
 
 //Function that get a random affirmation for chosed category
 const getAffirmation = () => {
@@ -38,7 +44,8 @@ const getAffirmation = () => {
   output.remove();
 
   //Getting a name from the user
-  const name = document.getElementById("name");
+  let name = document.getElementById("name");
+  // name = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
 
   //Getting all the categories from the form
   const radios = document.querySelectorAll('input[name="category"]');
@@ -58,8 +65,25 @@ const getAffirmation = () => {
       affirmationOfCategory[
         Math.floor(Math.random() * affirmationOfCategory.length)
       ];
-    output.classList.add("poppins-bold", "outputParagraph");
-    output.textContent = `${name.value}, her er dine ord i dag: ${randomAffirmation}`;
-    outputContainer.append(output);
+    output.classList.add("poppins-bold", "output-paragraph");
+    output.textContent = `${name.value}, her er dine ord i dag:`;
+    affirmasjonParagraph.textContent = `${randomAffirmation}`;
+    label.style.display = "none";
+    input.style.display = "none";
+    outputContainer.append(output, affirmasjonParagraph);
+    visAffirmasjonBtn.textContent = "velg en til";
+    resetButton.textContent = "Reset";
+    resetButton.addEventListener("click", reset);
+    document.body.append(resetButton);
   }
+};
+
+const reset = () => {
+  label.style.display = "inline-block";
+  input.style.display = "inline-block";
+  input.value = "";
+  visAffirmasjonBtn.textContent = "Vis affirmasjon";
+  output.remove();
+  affirmasjonParagraph.remove();
+  resetButton.style.display = "none";
 };
