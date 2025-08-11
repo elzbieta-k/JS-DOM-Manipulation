@@ -51,6 +51,20 @@ const createButton = (text, className, onClick) => {
   return btn;
 };
 
+//Function to set display to none or inline-block
+const setDisplay = (elements, valueToet) => {
+  for (let element of elements) {
+    element.style.display = valueToet;
+  }
+};
+
+//Function that removes elements from DOM
+const remove = (elements) => {
+  for (let element of elements) {
+    element.remove();
+  }
+};
+
 //Function that get a random affirmation for chosed category
 const getAffirmation = () => {
   //Removing an output if it already exists
@@ -88,12 +102,12 @@ const getAffirmation = () => {
         ];
       output.classList.add("poppins-bold", "output-paragraph");
       output.textContent = `${valueName}, her er dine ord i dag:`;
+
       affirmasjonParagraph.classList.add("affirmasjon-text");
       affirmasjonParagraph.textContent = `${randomAffirmation}`;
-      label.style.display = "none";
-      input.style.display = "none";
-      fieldset.style.display = "none";
-      visAffirmasjonBtn.style.display = "none";
+
+      setDisplay([label, input, fieldset, visAffirmasjonBtn], "none");
+
       outputContainer.append(output, affirmasjonParagraph);
       heading.style.display = "none";
       mainContainer.append(showAgainButton, resetButton);
@@ -103,28 +117,23 @@ const getAffirmation = () => {
 
 //Function for button which show again a categories for choosing new afirmation
 const showAgain = () => {
-  showAgainButton.remove();
   heading.style.display = "flex";
-  fieldset.style.display = "inline-block";
-  visAffirmasjonBtn.style.display = "inline-block";
-  showAgainButton.style.display = "inline-block";
-  output.remove();
-  affirmasjonParagraph.remove();
+  setDisplay([fieldset, visAffirmasjonBtn, showAgainButton], "inline-block");
+
+  remove([showAgainButton, output, affirmasjonParagraph]);
 };
 
 //Function reset - takes back to the input for entering name
 const reset = () => {
   heading.style.display = "flex";
-  label.style.display = "inline-block";
-  input.style.display = "inline-block";
+  setDisplay([label, input, fieldset, visAffirmasjonBtn], "inline-block");
   input.value = "";
-  fieldset.style.display = "inline-block";
-  visAffirmasjonBtn.style.display = "inline-block";
-  showAgainButton.remove();
   visAffirmasjonBtn.textContent = "Vis affirmasjon";
-  output.remove();
-  affirmasjonParagraph.remove();
-  resetButton.remove();
+  remove([showAgainButton, output, affirmasjonParagraph, resetButton]);
+  // showAgainButton.remove();
+  // output.remove();
+  // affirmasjonParagraph.remove();
+  // resetButton.remove();
 };
 
 //Creating buttons with function
