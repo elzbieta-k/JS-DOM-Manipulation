@@ -72,16 +72,20 @@ const getAffirmation = () => {
 
   //Getting a name from the user
   let name = document.getElementById("name");
-
+  //checking if the name is entered
   if (name.value.trim() === "") {
     errorParagraph.textContent = "Obs, du har glemt å skrive navnet ditt :)";
     label.focus();
     return false;
   } else {
+    //removing content from error message
     errorParagraph.textContent = "";
+
+    //changing the first letter of the name to uppercase
     let valueName = name.value;
     valueName =
       valueName.charAt(0).toUpperCase() + valueName.slice(1).toLowerCase();
+
     //Getting all the categories from the form
     const radios = document.querySelectorAll('input[name="category"]');
 
@@ -100,16 +104,20 @@ const getAffirmation = () => {
         affirmationOfCategory[
           Math.floor(Math.random() * affirmationOfCategory.length)
         ];
+
+      //Add classes to output paragrapgh, affirmasjonParagrapgh, added text of the affirmation
       output.classList.add("poppins-bold", "output-paragraph");
       output.textContent = `${valueName}, her er dine ord i dag:`;
 
       affirmasjonParagraph.classList.add("affirmasjon-text");
       affirmasjonParagraph.textContent = `${randomAffirmation}`;
 
+      //Setting display to chosen elements to "none"
       setDisplay([label, input, fieldset, visAffirmasjonBtn], "none");
-
-      outputContainer.append(output, affirmasjonParagraph);
       heading.style.display = "none";
+
+      //Appending elements to the ouputContainer
+      outputContainer.append(output, affirmasjonParagraph);
       mainContainer.append(showAgainButton, resetButton);
     }
   }
@@ -117,23 +125,28 @@ const getAffirmation = () => {
 
 //Function for button which show again a categories for choosing new afirmation
 const showAgain = () => {
-  heading.style.display = "flex";
+  //Setting display
+  setDisplay([heading], "flex");
   setDisplay([fieldset, visAffirmasjonBtn, showAgainButton], "inline-block");
 
+  //Removing chosen elements from the document
   remove([showAgainButton, output, affirmasjonParagraph]);
 };
 
 //Function reset - takes back to the input for entering name
 const reset = () => {
-  heading.style.display = "flex";
+  //Setting display
+  setDisplay([heading], "flex");
   setDisplay([label, input, fieldset, visAffirmasjonBtn], "inline-block");
+
+  //Clear the input value from the previous entered name
   input.value = "";
+
+  //Changing back the text of button
   visAffirmasjonBtn.textContent = "Vis affirmasjon";
+
+  //Removing chosen elements from the document
   remove([showAgainButton, output, affirmasjonParagraph, resetButton]);
-  // showAgainButton.remove();
-  // output.remove();
-  // affirmasjonParagraph.remove();
-  // resetButton.remove();
 };
 
 //Creating buttons with function
