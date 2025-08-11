@@ -50,14 +50,18 @@ body {
 
 fieldset {
   padding: 20px;
-  border-color: #b8b8ff;
+  border: #b8b8ff 2px solid;
   margin: 15px 0;
 }
 
 legend {
   text-align: center;
+  font-weight: bold;
 }
 
+input[type="text"] {
+  padding: 5px;
+}
 input[type="radio"] {
   accent-color: #b8b8ff;
 }
@@ -67,6 +71,12 @@ button {
   margin: 0 auto;
   border-color: #b8b8ff;
   background: linear-gradient(0.25turn, #b8b8ff, #f8f7ff, #ffeedd);
+  font-weight: 500;
+}
+
+button:hover {
+  transform: scale(1.1);
+  transition: all 0.5s;
 }
 
 .output-paragraph {
@@ -80,9 +90,8 @@ button {
   text-align: center;
   color: #9381ff;
   animation: scaleText 1s linear;
-  text-shadow: 1px 1px 5px black, /* Bottom-right shadow */ -1px 1px 0 black,
-    /* Bottom-left shadow */ 1px -1px 3px black,
-    /* Top-right shadow */ -1px -1px 3px black; /* Top-left shadow */
+  text-shadow: 1px 1px 5px black, -1px 1px 0 black, 1px -1px 3px black,
+    -1px -1px 3px black;
 }
 
 @keyframes scaleText {
@@ -98,6 +107,7 @@ button {
 label {
   text-align: center;
 }
+
 form {
   padding: 20px;
   display: flex;
@@ -114,6 +124,7 @@ form {
   bottom: 25px;
   right: 170px;
 }
+
 #outputContainer {
   position: fixed;
   top: 50%;

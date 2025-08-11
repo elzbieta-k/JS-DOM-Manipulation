@@ -1,3 +1,7 @@
+/* 
+Koden lar brukeren velge en kategori og skrive inn sitt navn for å få en tilfeldig affirmasjon (oppmuntrende setning) fra valgt kategori. Når brukeren trykker på "Vis affirmasjon", vises affirmasjonen sammen med navnet. Det finnes også knapper for å velge en ny affirmasjon eller tilbakestille skjemaet. Koden håndterer visning/skjuling av elementer og validerer at navnet er fylt inn.
+*/
+
 const affirmations = {
   motivasjon: [
     "Du trenger ikke være perfekt for å begynne – bare begynn.",

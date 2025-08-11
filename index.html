@@ -4,7 +4,7 @@
     <script src="script.js" defer></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DOM Manipulation</title>
+    <title>Affirmation Generator</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,6 +12,7 @@
       href="https://fonts.googleapis.com/css2?family=Ancizar+Sans:ital,wght@0,100..1000;1,100..1000&family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Big+Shoulders:opsz,wght@10..72,100..900&family=Fredericka+the+Great&family=Galindo&family=Gantari:ital,wght@0,100..900;1,100..900&family=Lexend+Deca:wght@100..900&family=Poppins:wght@300;500;700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link rel="shortcut icon" href="icon/star.png" type="image/x-icon" />
   </head>
   <body>
     <main id="main-container">
@@ -29,7 +30,7 @@
         <input type="text" id="name" name="name" required />
         <p id="error-message"></p>
         <fieldset class="poppins-light">
-          <legend>Velg en kategori:</legend>
+          <legend class="poppins-medium">Velg en kategori:</legend>
           <div>
             <input
               type="radio"
@@ -68,7 +69,7 @@
           </div>
         </fieldset>
         <button
-          class="poppins-light"
+          class="poppins-medium"
           type="button"
           id="get-affirmation"
           onclick="getAffirmation()"
